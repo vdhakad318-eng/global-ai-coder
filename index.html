@@ -32,10 +32,9 @@
         .chat-history { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
         .msg { padding: 12px 16px; border-radius: 8px; max-width: 85%; font-size: 15px; line-height: 1.5; }
         .user-msg { background-color: #2563eb; align-self: flex-end; color: white; }
-        .ai-msg { background-color: var(--bg-accent); align-self: flex-start; border: 1px solid var(--border-color); }
+        .ai-msg { background-color: var(--bg-accent); align-self: flex-start; border: 1px solid var(--border-color); white-space: pre-wrap; width: 100%; }
         
-        .action-link { display: inline-block; margin-top: 10px; padding: 10px 16px; background: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; }
-        .action-link:hover { background: #1d4ed8; }
+        pre { background: #000; padding: 14px; border-radius: 6px; overflow-x: auto; color: #10b981; font-family: monospace; text-align: left; margin-top: 8px; border: 1px solid #222; width: 100%; display: block; user-select: all; }
 
         .chat-input-area { padding: 15px; background: var(--bg-accent); border-top: 1px solid var(--border-color); display: flex; gap: 10px; }
         .input-box { flex: 1; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; color: white; font-size: 15px; outline: none; resize: none; height: 44px; }
@@ -50,51 +49,92 @@
         <div class="logo-section">
             <div class="logo-icon">&lt;&gt;</div>
             <div class="logo-text">Global AI Coder</div>
-            <span class="badge">SECURE RUN V11</span>
+            <span class="badge">AI LIVE ACTIVE V12</span>
         </div>
     </header>
 
     <div class="dashboard">
         <div class="workspace">
             <div class="chat-history" id="chatHistory">
-                <div class="msg ai-msg">Hello! Main aapka Global AI Software Engineer hoon. Apne app ka idea likhein, main aapko turant coding portal generate kar ke dunga jahan se aap live code copy kar sakte hain.</div>
+                <div class="msg ai-msg">Hello! Main aapka Global AI Software Engineer hoon. Apne app ka idea likhein, main aapko isi screen par live full coding bana kar dunga.</div>
             </div>
             <div class="chat-input-area">
                 <textarea class="input-box" id="userInput" placeholder="Ask AI to write code or create apps..."></textarea>
-                <button class="send-btn" id="sendBtn">Get Code Link</button>
+                <button class="send-btn" id="sendBtn">Send</button>
             </div>
         </div>
     </div>
 
-    <footer>© 2026 Global AI Coder. Secure Local Processing Framework.</footer>
+    <footer>© 2026 Global AI Coder. Secure Direct Stream Processing.</footer>
 
     <script>
         const chatHistory = document.getElementById('chatHistory');
         const userInput = document.getElementById('userInput');
         const sendBtn = document.getElementById('sendBtn');
 
-        sendBtn.onclick = () => {
+        // Direct Core Engine connection structure (No redirects, No loops)
+        async function getAICode(promptText) {
+            try {
+                const systemPrompt = "You are an expert AI software engineer. Provide complete, working, and ready-to-copy clean code blocks based on user demands. Respond in Hindi mix language.";
+                const targetUrl = `https://pollinations.ai{encodeURIComponent(systemPrompt + " User Request: " + promptText)}?model=openai&json=false&cache=false`;
+                
+                const response = await fetch(targetUrl);
+                const rawOutput = await response.text();
+                
+                if (rawOutput && rawOutput.trim().length > 0) {
+                    return rawOutput;
+                } else {
+                    return "Server down. Please try again.";
+                }
+            } catch (err) {
+                return "Network delay. Please re-send request.";
+            }
+        }
+
+        function appendMessage(text, type) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg ${type}`;
+            
+            // Checking markdown standard formatting tags for rendering raw coding text containers
+            if (text.includes("```")) {
+                let parts = text.split("```");
+                for (let i = 0; i < parts.length; i++) {
+                    if (i % 2 === 1) {
+                        const pre = document.createElement('pre');
+                        pre.innerText = parts[i].replace(/^\w+\n/, ''); // Clears text layout tag lines
+                        msgDiv.appendChild(pre);
+                    } else {
+                        const span = document.createElement('span');
+                        span.innerText = parts[i];
+                        msgDiv.appendChild(span);
+                    }
+                }
+            } else {
+                msgDiv.innerText = text;
+            }
+            chatHistory.appendChild(msgDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+
+        sendBtn.onclick = async () => {
             const query = userInput.value.trim();
             if(!query) return;
 
-            // User message screen par print karein
-            const userDiv = document.createElement('div');
-            userDiv.className = 'msg user-msg';
-            userDiv.innerText = query;
-            chatHistory.appendChild(userDiv);
+            appendMessage(query, 'user-msg');
             userInput.value = "";
 
-            // Secure Redirect Generator (Bypasses all network errors)
-            const aiDiv = document.createElement('div');
-            aiDiv.className = 'msg ai-msg';
-            
-            // Generate direct secure unblocked tool link
-            const targetUrl = `https://pollinations.ai{encodeURIComponent("Write complete clean ready-to-copy code for: " + query)}?model=openai`;
-            
-            aiDiv.innerHTML = `Maine aapki requirement <strong>"${query}"</strong> ke liye full code generate kar diya hai. Niche diye gaye secure blue link par click karke poora code turant copy kar lein:<br><br><a href="${targetUrl}" target="_blank" class="action-link">👉 Click Here to Get Complete Code</a>`;
-            
-            chatHistory.appendChild(aiDiv);
+            // Create temporary loader state element
+            const tempDiv = document.createElement('div');
+            tempDiv.className = 'msg ai-msg';
+            tempDiv.innerText = "AI coding kar raha hai... Kripya screen par bane rahein...";
+            chatHistory.appendChild(tempDiv);
             chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            const aiAnswer = await getAICode(query);
+            
+            // Remove loading indicator element before structural printing
+            chatHistory.removeChild(tempDiv); 
+            appendMessage(aiAnswer, 'ai-msg');
         };
     </script>
 </body>
