@@ -8,39 +8,30 @@
         :root {
             --bg-main: #0d0e12;
             --bg-card: #16171d;
-            --bg-accent: #1e2029;
             --primary: #10b981;
-            --primary-hover: #059669;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
             --border-color: #2a2d3a;
+            --text-main: #f3f4f6;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         
         body { background-color: var(--bg-main); color: var(--text-main); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
         
+        /* Premium Navigation Bar */
         header { background-color: var(--bg-card); padding: 16px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
         .logo-section { display: flex; align-items: center; gap: 12px; }
         .logo-icon { background: linear-gradient(135deg, #10b981, #3b82f6); width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
         .logo-text { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; background: linear-gradient(to right, #ffffff, #9ca3af); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .badge { background-color: rgba(16, 185, 129, 0.15); color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.3); }
 
-        .dashboard { flex: 1; display: flex; flex-direction: column; width: 100%; max-width: 1000px; margin: 0 auto; padding: 24px; height: calc(100vh - 140px); gap: 15px; }
+        /* Full Screen Workspace */
+        .dashboard { flex: 1; display: flex; flex-direction: column; width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; height: calc(100vh - 120px); }
+        .workspace { flex: 1; border-radius: 12px; border: 1px solid var(--border-color); background: #1a1a1a; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
         
-        .workspace { flex: 1; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-card); display: flex; flex-direction: column; overflow: hidden; }
-        .chat-history { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
-        .msg { padding: 12px 16px; border-radius: 8px; max-width: 85%; font-size: 15px; line-height: 1.5; }
-        .user-msg { background-color: #2563eb; align-self: flex-end; color: white; }
-        .ai-msg { background-color: var(--bg-accent); align-self: flex-start; border: 1px solid var(--border-color); white-space: pre-wrap; width: 100%; }
-        
-        pre { background: #000; padding: 14px; border-radius: 6px; overflow-x: auto; color: #10b981; font-family: monospace; text-align: left; margin-top: 8px; border: 1px solid #222; width: 100%; display: block; user-select: all; }
+        /* High Availability Secure Frame */
+        iframe { width: 100%; height: 100%; border: none; background: #1a1a1a; }
 
-        .chat-input-area { padding: 15px; background: var(--bg-accent); border-top: 1px solid var(--border-color); display: flex; gap: 10px; }
-        .input-box { flex: 1; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; color: white; font-size: 15px; outline: none; resize: none; height: 44px; }
-        .send-btn { background: var(--primary); border: none; padding: 0 20px; border-radius: 8px; font-weight: bold; cursor: pointer; color: black; }
-
-        footer { text-align: center; padding: 12px; border-top: 1px solid var(--border-color); background-color: var(--bg-card); font-size: 12px; color: var(--text-muted); }
+        footer { text-align: center; padding: 12px; border-top: 1px solid var(--border-color); background-color: var(--bg-card); font-size: 12px; color: #9ca3af; }
     </style>
 </head>
 <body>
@@ -49,93 +40,18 @@
         <div class="logo-section">
             <div class="logo-icon">&lt;&gt;</div>
             <div class="logo-text">Global AI Coder</div>
-            <span class="badge">AI LIVE ACTIVE V12</span>
+            <span class="badge">SECURE SYSTEM v13</span>
         </div>
     </header>
 
     <div class="dashboard">
         <div class="workspace">
-            <div class="chat-history" id="chatHistory">
-                <div class="msg ai-msg">Hello! Main aapka Global AI Software Engineer hoon. Apne app ka idea likhein, main aapko isi screen par live full coding bana kar dunga.</div>
-            </div>
-            <div class="chat-input-area">
-                <textarea class="input-box" id="userInput" placeholder="Ask AI to write code or create apps..."></textarea>
-                <button class="send-btn" id="sendBtn">Send</button>
-            </div>
+            <!-- Hugging Face ka verified, auto-loading framework jo bina network block ke seedhe open hota hai -->
+            <iframe src="https://hf.space" allow="clipboard-write; microphone"></iframe>
         </div>
     </div>
 
-    <footer>© 2026 Global AI Coder. Secure Direct Stream Processing.</footer>
+    <footer>© 2026 Global AI Coder. Powered by High-Speed Global AI Infrastructure.</footer>
 
-    <script>
-        const chatHistory = document.getElementById('chatHistory');
-        const userInput = document.getElementById('userInput');
-        const sendBtn = document.getElementById('sendBtn');
-
-        // Direct Core Engine connection structure (No redirects, No loops)
-        async function getAICode(promptText) {
-            try {
-                const systemPrompt = "You are an expert AI software engineer. Provide complete, working, and ready-to-copy clean code blocks based on user demands. Respond in Hindi mix language.";
-                const targetUrl = `https://pollinations.ai{encodeURIComponent(systemPrompt + " User Request: " + promptText)}?model=openai&json=false&cache=false`;
-                
-                const response = await fetch(targetUrl);
-                const rawOutput = await response.text();
-                
-                if (rawOutput && rawOutput.trim().length > 0) {
-                    return rawOutput;
-                } else {
-                    return "Server down. Please try again.";
-                }
-            } catch (err) {
-                return "Network delay. Please re-send request.";
-            }
-        }
-
-        function appendMessage(text, type) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `msg ${type}`;
-            
-            // Checking markdown standard formatting tags for rendering raw coding text containers
-            if (text.includes("```")) {
-                let parts = text.split("```");
-                for (let i = 0; i < parts.length; i++) {
-                    if (i % 2 === 1) {
-                        const pre = document.createElement('pre');
-                        pre.innerText = parts[i].replace(/^\w+\n/, ''); // Clears text layout tag lines
-                        msgDiv.appendChild(pre);
-                    } else {
-                        const span = document.createElement('span');
-                        span.innerText = parts[i];
-                        msgDiv.appendChild(span);
-                    }
-                }
-            } else {
-                msgDiv.innerText = text;
-            }
-            chatHistory.appendChild(msgDiv);
-            chatHistory.scrollTop = chatHistory.scrollHeight;
-        }
-
-        sendBtn.onclick = async () => {
-            const query = userInput.value.trim();
-            if(!query) return;
-
-            appendMessage(query, 'user-msg');
-            userInput.value = "";
-
-            // Create temporary loader state element
-            const tempDiv = document.createElement('div');
-            tempDiv.className = 'msg ai-msg';
-            tempDiv.innerText = "AI coding kar raha hai... Kripya screen par bane rahein...";
-            chatHistory.appendChild(tempDiv);
-            chatHistory.scrollTop = chatHistory.scrollHeight;
-
-            const aiAnswer = await getAICode(query);
-            
-            // Remove loading indicator element before structural printing
-            chatHistory.removeChild(tempDiv); 
-            appendMessage(aiAnswer, 'ai-msg');
-        };
-    </script>
 </body>
 </html>
