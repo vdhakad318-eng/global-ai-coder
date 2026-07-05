@@ -67,13 +67,15 @@ async function sendMessage(){
     createMessage(text,"user");
 
     chatHistory.push({
-        role:"user",
-        content:text
-    });
+    role:"user",
+    content:text
+});
 
-    prompt.value="";
+saveChat();
 
-    showTyping();
+prompt.value="";
+
+showTyping();
 
     try{
 
@@ -103,11 +105,13 @@ async function sendMessage(){
 
             chatHistory.push({
 
-                role:"assistant",
+    role:"assistant",
 
-                content:data.reply
+    content:data.reply
 
-            });
+});
+
+saveChat();
 
         }else{
 
