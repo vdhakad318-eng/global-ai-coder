@@ -133,3 +133,179 @@ async function sendMessage(){
     }
 
 }
+
+// =====================================
+// Event Listeners
+// =====================================
+
+// Send Button
+sendBtn.addEventListener("click", sendMessage);
+
+// Enter Key
+prompt.addEventListener("keydown", function(e){
+
+    if(e.key==="Enter" && !e.shiftKey){
+
+        e.preventDefault();
+
+        sendMessage();
+
+    }
+
+});
+
+// =====================================
+// Save Chat
+// =====================================
+
+function saveChat(){
+
+    localStorage.setItem(
+
+        "global_ai_chat",
+
+        JSON.stringify(chatHistory)
+
+    );
+
+}
+
+// =====================================
+// Load Chat
+// =====================================
+
+function loadChat(){
+
+    const data=localStorage.getItem(
+
+        "global_ai_chat"
+
+    );
+
+    if(!data) return;
+
+    chatHistory=JSON.parse(data);
+
+    messages.innerHTML="";
+
+    chatHistory.forEach(msg=>{
+
+        createMessage(
+
+            msg.content,
+
+            msg.role==="user"
+
+            ?"user"
+
+            :"ai"
+
+        );
+
+    });
+
+}
+
+// =====================================
+// New Chat
+// =====================================
+
+document
+
+.getElementById("newChatBtn")
+
+.addEventListener("click",()=>{
+
+messages.innerHTML="";
+
+chatHistory=[];
+
+localStorage.removeItem(
+
+"global_ai_chat"
+
+);
+
+});
+
+// =====================================
+// Clear Chat
+// =====================================
+
+document
+
+.getElementById("clearChat")
+
+.addEventListener("click",()=>{
+
+messages.innerHTML="";
+
+chatHistory=[];
+
+localStorage.removeItem(
+
+"global_ai_chat"
+
+);
+
+});
+
+// =====================================
+// Export Chat
+// =====================================
+
+document
+
+.getElementById("downloadChat")
+
+.addEventListener("click",()=>{
+
+let text="";
+
+chatHistory.forEach(msg=>{
+
+text+=
+
+msg.role.toUpperCase()
+
++":\n"
+
++msg.content
+
++"\n\n";
+
+});
+
+const blob=new Blob(
+
+[text],
+
+{
+
+type:"text/plain"
+
+}
+
+);
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download="chat.txt";
+
+a.click();
+
+});
+
+// =====================================
+// Auto Save
+// =====================================
+
+setInterval(saveChat,3000);
+
+// =====================================
+// Load on Start
+// =====================================
+
+loadChat();
