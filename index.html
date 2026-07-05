@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global AI Coder — Premium AI Software Engineer</title>
+    <style>
+        :root {
+            --bg-main: #0d0e12;
+            --bg-card: #16171d;
+            --bg-accent: #1e2029;
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #2a2d3a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        body { background-color: var(--bg-main); color: var(--text-main); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+        
+        /* Premium Navigation Bar */
+        header { background-color: var(--bg-card); padding: 16px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { background: linear-gradient(135deg, #10b981, #3b82f6); width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+        .logo-text { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; background: linear-gradient(to right, #ffffff, #9ca3af); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .badge { background-color: rgba(16, 185, 129, 0.15); color: var(--primary); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.3); letter-spacing: 0.5px; }
+
+        /* Main Dashboard Layout */
+        .dashboard { flex: 1; display: flex; flex-direction: column; width: 100%; max-width: 1200px; margin: 0 auto; padding: 24px; height: calc(100vh - 140px); gap: 20px; }
+        
+        /* Advanced Smart Mic Console */
+        .voice-console { background: var(--bg-card); padding: 16px 24px; border-radius: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .console-info { display: flex; flex-direction: column; gap: 4px; }
+        .console-title { font-size: 14px; font-weight: 600; color: var(--text-main); }
+        #statusMessage { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+        
+        .voice-btn { background-color: var(--primary); border: none; color: #000; font-size: 14px; font-weight: 600; padding: 12px 24px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2); }
+        .voice-btn:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
+        .voice-btn:active { transform: translateY(1px); }
+
+        /* Premium Workspace Viewport */
+        .workspace { flex: 1; position: relative; border-radius: 12px; border: 1px solid var(--border-color); overflow: hidden; background: #1e1e1e; box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+        iframe { width: 100%; height: 100%; border: none; background: #1a1a1a; }
+
+        /* Professional Footer Elements */
+        footer { text-align: center; padding: 12px; border-top: 1px solid var(--border-color); background-color: var(--bg-card); display: flex; justify-content: center; align-items: center; gap: 15px; }
+        .footer-text { font-size: 12px; color: var(--text-muted); }
+        .donate-btn { display: inline-block; padding: 8px 16px; background: rgba(255, 221, 0, 0.1); color: #ffdd00; font-weight: 600; text-decoration: none; border-radius: 6px; font-size: 13px; border: 1px solid rgba(255, 221, 0, 0.3); transition: all 0.2s ease; }
+        .donate-btn:hover { background: #ffdd00; color: #000; }
+    </style>
+</head>
+<body>
+
+    <!-- Professional Top Navigation -->
+    <header>
+        <div class="logo-section">
+            <div class="logo-icon">&lt;&gt;</div>
+            <div class="logo-text">Global AI Coder</div>
+            <span class="badge">LLAMA 3.3 PRO</span>
+        </div>
+    </header>
+
+    <!-- Professional Workspace Layout -->
+    <div class="dashboard">
+        <!-- Smart Voice System -->
+        <div class="voice-console">
+            <div class="console-info">
+                <div class="console-title">AI Voice Command Integration</div>
+                <span id="statusMessage">Click the microphone to describe your application or website structure.</span>
+            </div>
+            <button class="voice-btn" id="voiceBtn">
+                <span id="btnIcon">🎤</span> <span id="btnText">Start Voice Input</span>
+            </button>
+        </div>
+
+        <!-- Embedded Main Engine Frame -->
+        <div class="workspace">
+            <iframe src="https://huggingface.co" allow="microphone"></iframe>
+        </div>
+    </div>
+
+    <!-- Corporate Footer -->
+    <footer>
+        <span class="footer-text">© 2026 Global AI Coder. Powered by Advanced Neural Networks.</span>
+        <a href="https://buymeacoffee.com" target="_blank" class="donate-btn">☕ Support Project</a>
+    </footer>
+
+    <script>
+        const voiceBtn = document.getElementById('voiceBtn');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+        const statusMessage = document.getElementById('statusMessage');
+
+        // Professional Speech Recognition Implementation
+        if ('webkitSpeechRecognition' in window || 'speechRecognition' in window) {
+            const SpeechRecognition = window.webkitSpeechRecognition || window.speechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US'; // Supports universal global voice detection
+
+            voiceBtn.onclick = () => {
+                try {
+                    recognition.start();
+                    btnText.innerText = 'Listening Now...';
+                    btnIcon.innerText = '🛑';
+                    voiceBtn.style.backgroundColor = '#ef4444';
+                    voiceBtn.style.color = '#ffffff';
+                    statusMessage.innerText = "Processing voice frequencies. Speak your technical requirements clearly.";
+                } catch(e) {
+                    statusMessage.innerText = "System busy. Please try again.";
+                    resetBtnStyle();
+                }
+            };
+
+            recognition.onresult = (event) => {
+                const speechOutput = event.results[0][0].transcript;
+                navigator.clipboard.writeText(speechOutput);
+                statusMessage.innerHTML = `<strong>Captured:</strong> "${speechOutput}" <span style="color: #10b981;">(Copied to clipboard. Paste inside AI text field below)</span>`;
+            };
+
+            recognition.onerror = () => {
+                statusMessage.innerText = "Hardware connection error. Check microphone authorization status.";
+                resetBtnStyle();
+            };
+
+            recognition.onend = () => {
+                resetBtnStyle();
+            };
+
+            function resetBtnStyle() {
+                btnText.innerText = 'Start Voice Input';
+                btnIcon.innerText = '🎤';
+                voiceBtn.style.backgroundColor = 'var(--primary)';
+                voiceBtn.style.color = '#000';
+            }
+        } else {
+            document.querySelector('.voice-console').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
