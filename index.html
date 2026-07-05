@@ -57,7 +57,7 @@
         <div class="logo-section">
             <div class="logo-icon">&lt;&gt;</div>
             <div class="logo-text">Global AI Coder</div>
-            <span class="badge">GEMINI FLASH PRO</span>
+            <span class="badge">AI CORE V2</span>
         </div>
     </header>
 
@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    <footer>© 2026 Global AI Coder. Powered by Google AI Cloud Networks.</footer>
+    <footer>© 2026 Global AI Coder. Powered by Open Source AI Networks.</footer>
 
     <script>
         const chatHistory = document.getElementById('chatHistory');
@@ -90,32 +90,33 @@
         const voiceBtn = document.getElementById('voiceBtn');
         const statusMessage = document.getElementById('statusMessage');
 
-        // Free Stable High-Speed Engine Setup
+        // Public Open Proxy Engine (No Security Token Needed - GitHub won't block this)
         async function getAICode(promptText) {
             statusMessage.innerText = "AI Coding is in progress... Please wait.";
             try {
-                // Free public gateway for fast query processing without strict token blocking
-                const response = await fetch("https://openrouter.ai", {
+                const response = await fetch("https://pollinations.ai", {
                     method: "POST",
-                    headers: { 
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer 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"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        model: "google/gemini-2.5-flash",
                         messages: [
-                            { role: "system", content: "You are an expert AI software engineer. Provide complete, working, and ready-to-copy clean code blocks based on user demands. Respond in the user's exact native language (Hindi/English/Urdu)." },
+                            { role: "system", content: "You are an expert AI software engineer. Provide complete, working, and ready-to-copy clean code blocks based on user demands. Respond in Hindi/English mix seamlessly." },
                             { role: "user", content: promptText }
-                        ]
+                        ],
+                        model: "openai-large"
                     })
                 });
                 
-                const data = await response.json();
+                const textData = await response.text();
                 statusMessage.innerText = "AI Engine ready.";
-                return data?.choices[0]?.message?.content || "Server high load. Please retry.";
+                
+                if (textData) {
+                    return textData;
+                } else {
+                    return "Server busy. Please try sending your request again.";
+                }
             } catch (err) {
                 statusMessage.innerText = "Connection Error.";
-                return "Engine connection timeout. Please resend request.";
+                return "Engine connection timeout. Please check dashboard.";
             }
         }
 
