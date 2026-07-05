@@ -336,3 +336,121 @@ Close
 </div>
 
   </div>
+
+  <!-- JavaScript -->
+
+<script src="js/app.js"></script>
+
+<script>
+
+// Highlight.js
+document.addEventListener("DOMContentLoaded", () => {
+
+if(window.hljs){
+hljs.highlightAll();
+}
+
+});
+
+// Auto Resize Textarea
+
+const textarea=document.getElementById("prompt");
+
+if(textarea){
+
+textarea.addEventListener("input",function(){
+
+this.style.height="auto";
+
+this.style.height=this.scrollHeight+"px";
+
+});
+
+}
+
+// Enter to Send
+
+textarea?.addEventListener("keydown",function(e){
+
+if(e.key==="Enter" && !e.shiftKey){
+
+e.preventDefault();
+
+document.getElementById("sendBtn").click();
+
+}
+
+});
+
+// Hide Loading Screen
+
+window.addEventListener("load",()=>{
+
+const loading=document.getElementById("loadingScreen");
+
+if(loading){
+
+loading.style.opacity="0";
+
+setTimeout(()=>{
+
+loading.remove();
+
+},500);
+
+}
+
+});
+
+// Settings
+
+document.getElementById("closeSettings")?.addEventListener("click",()=>{
+
+document.getElementById("settingsModal").style.display="none";
+
+});
+
+// About
+
+document.getElementById("closeAbout")?.addEventListener("click",()=>{
+
+document.getElementById("aboutModal").style.display="none";
+
+});
+
+// Clear Chat
+
+document.getElementById("clearChat")?.addEventListener("click",()=>{
+
+const msg=document.getElementById("messages");
+
+if(msg){
+
+msg.innerHTML="";
+
+}
+
+});
+
+// Copy Last Message
+
+document.getElementById("copyLast")?.addEventListener("click",()=>{
+
+const bubbles=document.querySelectorAll(".bubble");
+
+if(bubbles.length){
+
+navigator.clipboard.writeText(
+bubbles[bubbles.length-1].innerText
+);
+
+alert("Copied!");
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
