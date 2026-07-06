@@ -195,7 +195,11 @@ function loadChat(){
 
     if(!data) return;
 
-    chatHistory=JSON.parse(data);
+try {
+    chatHistory = JSON.parse(data);
+} catch {
+    chatHistory = [];
+}
 
     messages.innerHTML="";
 
