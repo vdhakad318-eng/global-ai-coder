@@ -23,48 +23,45 @@ export default async function handler(req, res) {
       });
     }
 
-    const API_KEY = process.env.GEMINI_API_KEY;
+    const API_KEY = process.env.GROQ_API_KEY;
 
     if (!API_KEY) {
       return res.status(500).json({
-        error: "Gemini API Key not found."
+        error: "GROQ_API_KEY not found."
       });
     }
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`,
+      "https://api.groq.com/openai/v1/chat/completions",
       {
         method: "POST",
         headers: {
+          "Authorization": `Bearer ${API_KEY}`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          contents: [
+          model: "llama-3.3-70b-versatile",
+          temperature: 0.4,
+          max_tokens: 4096,
+          messages: [
             {
-              role: "user",
-              parts: [
-                {
-                  text: `You are Global AI Coder.
+              role: "system",
+              content: `You are Global AI Coder.
+
+You are an expert software engineer.
 
 Rules:
-- You are an expert software engineer.
-- Always provide complete code.
+- Always provide complete working code.
 - Support HTML, CSS, JavaScript, Java, Python, C++, Android, React, Node.js.
-- Explain briefly before the code.
-- Wrap code inside Markdown code blocks.
-
-User Request:
-${message}`
-                }
-              ]
+- Explain briefly before code.
+- Always wrap code inside Markdown code blocks.
+- Never give incomplete code.`
+            },
+            {
+              role: "user",
+              content: message
             }
-          ],
-          generationConfig: {
-            temperature: 0.7,
-            topP: 0.95,
-            topK: 40,
-            maxOutputTokens: 4096
-          }
+          ]
         })
       }
     );
@@ -75,13 +72,9 @@ ${message}`
       return res.status(response.status).json(data);
     }
 
-    const reply =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "No response from Gemini.";
-
     return res.status(200).json({
       success: true,
-      reply
+      reply: data.choices[0].message.content
     });
 
   } catch (err) {
