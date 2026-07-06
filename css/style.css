@@ -47,10 +47,10 @@ overflow:hidden;
 }
 
 button{
-
-cursor:pointer;
-transition:.25s;
-
+    cursor:pointer;
+    border:none;
+    outline:none;
+    transition:.25s;
 }
 
 button:hover{
