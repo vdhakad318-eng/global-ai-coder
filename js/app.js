@@ -26,7 +26,7 @@ function createMessage(text, type) {
     const bubble = document.createElement("div");
     bubble.className = "bubble";
 
-    bubble.innerHTML = marked.parse(text);
+bubble.innerHTML = window.marked ? marked.parse(text) : text;
 
     wrapper.appendChild(avatar);
     wrapper.appendChild(bubble);
