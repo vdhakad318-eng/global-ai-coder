@@ -8,6 +8,11 @@ const prompt = document.getElementById("prompt");
 const sendBtn = document.getElementById("sendBtn");
 const typingIndicator = document.getElementById("typingIndicator");
 
+if (!messages || !prompt || !sendBtn || !typingIndicator) {
+    console.error("Required HTML elements not found.");
+    throw new Error("HTML IDs mismatch.");
+}
+
 // Chat History
 let chatHistory = [];
 
