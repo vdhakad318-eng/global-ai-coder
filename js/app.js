@@ -314,7 +314,9 @@ a.href=URL.createObjectURL(blob);
 a.download="chat.txt";
 
 a.click();
-
+    
+URL.revokeObjectURL(a.href);
+    
 });
 
 // =====================================
