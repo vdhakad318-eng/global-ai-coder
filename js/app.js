@@ -33,7 +33,9 @@ bubble.innerHTML = window.marked ? marked.parse(text) : text;
 
     messages.appendChild(wrapper);
 
-    hljs.highlightAll();
+bubble.querySelectorAll("pre code").forEach((block) => {
+    hljs.highlightElement(block);
+});
 
     messages.scrollTop = messages.scrollHeight;
 }
