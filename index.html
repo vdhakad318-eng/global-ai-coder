@@ -452,31 +452,7 @@ alert("Copied!");
 
 });
 
-/* ==========================
-   Hamburger Menu
-========================== */
-
-const menuBtn = document.getElementById("menuBtn");
-const menuOverlay = document.getElementById("menuOverlay");
-const closeMenu = document.getElementById("closeMenu");
-
-menuBtn?.addEventListener("click", () => {
-    menuOverlay.classList.add("show");
-});
-
-closeMenu?.addEventListener("click", () => {
-    menuOverlay.classList.remove("show");
-});
-
-menuOverlay?.addEventListener("click", (e) => {
-    if (e.target === menuOverlay) {
-        menuOverlay.classList.remove("show");
-    }
-});
-
 </script>
-
-<div id="hamburgerMenu" class="hamburgerMenu">
 
 <h2>Global AI Coder</h2>
 
