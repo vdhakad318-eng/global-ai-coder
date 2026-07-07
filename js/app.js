@@ -94,12 +94,14 @@ ${codeText}
 
     actions.appendChild(copyBtn);
 
-    if (
-        code.className.includes("html") ||
-        code.className.includes("xml")
-    ) {
-        actions.appendChild(previewBtn);
-    }
+const lang = code.className.toLowerCase();
+
+if (
+    lang.includes("html") ||
+    lang.includes("xml")
+){
+    actions.appendChild(previewBtn);
+}
 
     pre.parentNode.insertBefore(actions, pre);
 
