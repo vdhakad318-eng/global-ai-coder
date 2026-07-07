@@ -540,70 +540,99 @@ transform:translateY(0);
 
 }
 
-/* ===================================
-   Chat Footer
-=================================== */
+/* ===== ChatGPT Style Input ===== */
 
 .chatFooter{
-position:sticky;
-bottom:0;
-z-index:999;
-
+padding:16px;
 background:#161b22;
 border-top:1px solid var(--border);
-padding:20px;
 }
 
 .inputBox{
+width:100%;
+display:flex;
+justify-content:center;
+}
+
+.chatInput{
+
+width:100%;
+max-width:900px;
 
 display:flex;
 align-items:flex-end;
-gap:12px;
+
+background:#21262d;
+
+border:1px solid #30363d;
+
+border-radius:28px;
+
+padding:8px 10px;
+
+gap:10px;
 
 }
 
-.inputBox textarea{
+.chatInput textarea{
 
 flex:1;
-min-height:55px;
-max-height:180px;
-padding:15px;
-font-size:15px;
-background:#0d1117;
-border:1px solid var(--border);
-border-radius:14px;
+
+background:transparent;
+
+border:none;
+
+outline:none;
+
 color:#fff;
 
+font-size:16px;
+
+line-height:1.5;
+
+resize:none;
+
+min-height:26px;
+
+max-height:180px;
+
+padding:8px;
+
 }
 
-.inputBox textarea::placeholder{
+.chatInput textarea::placeholder{
 
-color:#888;
-
-}
-
-.inputBox textarea:focus{
-
-border-color:var(--primary);
+color:#9ca3af;
 
 }
 
 #sendBtn{
 
-width:60px;
-height:55px;
-border-radius:14px;
-background:var(--primary);
+width:44px;
+
+height:44px;
+
+border-radius:50%;
+
+background:#10a37f;
+
 color:#fff;
-font-size:22px;
-transition:.25s;
+
+font-size:20px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+flex-shrink:0;
 
 }
 
 #sendBtn:hover{
 
-background:var(--primaryHover);
-transform:scale(1.05);
+background:#0d8d6d;
 
 }
 
