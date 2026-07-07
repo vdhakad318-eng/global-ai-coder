@@ -83,6 +83,16 @@ flex-direction:column;
 
 }
 
+.sidebar.collapsed{
+    width:0;
+    overflow:hidden;
+    border-right:none;
+}
+
+.sidebar.collapsed + .main{
+    width:100%;
+}
+
 .logo{
 
 display:flex;
