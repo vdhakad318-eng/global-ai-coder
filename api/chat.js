@@ -56,7 +56,7 @@ Rules:
 - Generate code only when the user explicitly asks for coding, debugging, programming, or software development.
 - Explain briefly before code.
 - Wrap code in Markdown code blocks only when code is included.
-- Never generate unnecessary code.
+- Never generate unnecessary code.`
             },
             {
               role: "user",
