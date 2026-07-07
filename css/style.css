@@ -1005,3 +1005,68 @@ transform:translateX(0);
 }
 
 }
+
+/* ===================================
+   Code Block Actions
+=================================== */
+
+.codeActions{
+
+display:flex;
+
+justify-content:flex-end;
+
+gap:8px;
+
+margin-bottom:8px;
+
+}
+
+.copyCodeBtn,
+.previewBtn{
+
+background:#2d3748;
+
+color:#fff;
+
+border:1px solid #444;
+
+padding:6px 12px;
+
+border-radius:8px;
+
+font-size:13px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.copyCodeBtn:hover{
+
+background:#10a37f;
+
+border-color:#10a37f;
+
+}
+
+.previewBtn:hover{
+
+background:#2563eb;
+
+border-color:#2563eb;
+
+}
+
+pre{
+
+margin-top:0;
+
+border-radius:12px;
+
+overflow:auto;
+
+}
