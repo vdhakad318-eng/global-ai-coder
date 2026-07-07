@@ -304,15 +304,13 @@ transform:scale(1);
 ================================ */
 
 .chatContainer{
-
 flex:1;
 overflow-y:auto;
 padding:30px;
 display:flex;
 flex-direction:column;
 gap:22px;
-scroll-behavior:smooth;
-
+min-height:0;
 }
 
 .chatContainer::-webkit-scrollbar{
