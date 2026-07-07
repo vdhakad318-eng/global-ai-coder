@@ -836,6 +836,21 @@ height:42px;
 
 }
 
+.codeActions{
+
+justify-content:space-between;
+
+}
+
+.copyCodeBtn,
+.previewBtn{
+
+font-size:12px;
+
+padding:6px 10px;
+
+}
+
 /* ===================================
    Selection
 =================================== */
