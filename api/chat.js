@@ -40,10 +40,10 @@ export default async function handler(req, res) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          model: "llama-3.3-70b-versatile",
-          temperature: 0.4,
-          max_tokens: 4096,
-          messages: [
+        model: "llama-3.1-8b-instant",
+        temperature: 0.3,
+        max_tokens: 2048,
+        messages: [
             {
               role: "system",
               content: `You are Global AI Coder.
