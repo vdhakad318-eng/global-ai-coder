@@ -1,5 +1,4 @@
 User-agent: *
-
 Allow: /
 
 Sitemap: https://global-ai-coder-mr-vikash.vercel.app/sitemap.xml
