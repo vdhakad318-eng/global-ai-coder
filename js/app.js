@@ -65,15 +65,32 @@ bubble.querySelectorAll("pre").forEach((pre) => {
     previewBtn.className = "previewBtn";
     previewBtn.textContent = "👁 Preview";
 
-    previewBtn.onclick = () => {
+previewBtn.onclick = () => {
 
-        const win = window.open();
+    const codeText = code.innerText;
 
-        win.document.open();
-        win.document.write(code.innerText);
-        win.document.close();
+    const previewWindow = window.open("", "_blank");
 
-    };
+    previewWindow.document.write(`
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Preview</title>
+</head>
+
+<body>
+
+${codeText}
+
+</body>
+</html>
+`);
+
+    previewWindow.document.close();
+
+};
 
     actions.appendChild(copyBtn);
 
