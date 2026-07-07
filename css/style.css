@@ -786,3 +786,24 @@ color:white;
 /* ===================================
    END
 =================================== */
+
+.footer{
+display:flex;
+justify-content:center;
+gap:20px;
+padding:15px;
+background:#111827;
+border-top:1px solid #333;
+flex-wrap:wrap;
+}
+
+.footer a{
+color:#ffffff;
+text-decoration:none;
+font-size:15px;
+font-weight:bold;
+}
+
+.footer a:hover{
+color:#00e5ff;
+}
