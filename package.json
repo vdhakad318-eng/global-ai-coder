@@ -4,3 +4,5 @@
   "private": true,
   "type": "module"
 }
+
+"@vercel/analytics": "^2.0.1"
