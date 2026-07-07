@@ -174,10 +174,10 @@ background:#2b3745;
 }
 
 .bottomMenu{
-
 padding:18px;
 border-top:1px solid var(--border);
-
+overflow-y:auto;
+max-height:40vh;
 }
 
 .bottomMenu button{
