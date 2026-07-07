@@ -810,6 +810,47 @@ width:100%;
 
 }
 
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+.app{
+    flex-direction:column;
+    min-height:100dvh;
+}
+
+.main{
+    width:100%;
+    min-width:0;
+}
+
+.topBar{
+    width:100%;
+}
+
+.chatContainer{
+    flex:1;
+    overflow-y:auto;
+    padding:15px;
+}
+
+.chatFooter{
+    position:sticky;
+    bottom:0;
+    width:100%;
+    background:#161b22;
+}
+
+.inputBox{
+    width:100%;
+}
+
+.inputBox textarea{
+    width:100%;
+}
+
 /* ===================================
    Selection
 =================================== */
