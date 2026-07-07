@@ -329,7 +329,8 @@ padding:30px;
 display:flex;
 flex-direction:column;
 gap:22px;
-min-height:0;
+
+height:calc(100dvh - 75px - 110px);
 }
 
 .chatContainer::-webkit-scrollbar{
@@ -544,11 +545,13 @@ transform:translateY(0);
 =================================== */
 
 .chatFooter{
+position:sticky;
+bottom:0;
+z-index:999;
 
-padding:20px;
 background:#161b22;
 border-top:1px solid var(--border);
-
+padding:20px;
 }
 
 .inputBox{
