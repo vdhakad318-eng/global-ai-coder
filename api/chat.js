@@ -70,13 +70,19 @@ Rules:
     const data = await response.json();
 
 if (!response.ok) {
-  console.error("Groq Error:", data);
+
+  if (response.status === 429) {
+    return res.status(429).json({
+      success: false,
+      error: "⚠️ AI server is busy or the free API limit has been reached. Please wait a minute and try again."
+    });
+  }
 
   return res.status(response.status).json({
     success: false,
-    error: data.error?.message || "Groq API Error",
-    details: data
+    error: data.error?.message || "Groq API Error"
   });
+
 }
 
     return res.status(200).json({
