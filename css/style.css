@@ -814,44 +814,157 @@ color:white;
    END
 =================================== */
 
-.footer{
+/* ==========================
+   Hamburger Menu
+========================== */
+
+.menuBtn{
+
+width:45px;
+height:45px;
+
+background:#10a37f;
+
+color:#fff;
+
+font-size:24px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+transition:.25s;
+
+margin-right:15px;
+
+}
+
+.menuBtn:hover{
+
+background:#0d8d6d;
+
+transform:scale(1.05);
+
+}
+
+.menuOverlay{
+
+position:fixed;
+
+top:0;
+
+left:0;
 
 width:100%;
 
-display:flex;
+height:100%;
 
-justify-content:center;
+background:rgba(0,0,0,.55);
 
-align-items:center;
+display:none;
 
-gap:18px;
+justify-content:flex-start;
 
-padding:20px;
+align-items:stretch;
 
-background:#111827;
-
-border-top:1px solid #374151;
-
-flex-wrap:wrap;
-
-margin-top:20px;
+z-index:99999;
 
 }
 
-.footer a{
+.menuOverlay.show{
 
-color:#38bdf8;
+display:flex;
+
+}
+
+.hamburgerMenu{
+
+width:280px;
+
+max-width:85%;
+
+height:100%;
+
+background:#161b22;
+
+padding:25px;
+
+display:flex;
+
+flex-direction:column;
+
+box-shadow:5px 0 20px rgba(0,0,0,.4);
+
+animation:slideMenu .25s ease;
+
+}
+
+.hamburgerMenu h2{
+
+margin-bottom:25px;
+
+color:#10a37f;
+
+}
+
+.hamburgerMenu a{
+
+padding:14px;
+
+margin-bottom:12px;
+
+background:#21262d;
+
+border-radius:10px;
+
+color:#fff;
 
 text-decoration:none;
 
-font-size:14px;
-
-font-weight:600;
+transition:.25s;
 
 }
 
-.footer a:hover{
+.hamburgerMenu a:hover{
+
+background:#30363d;
+
+color:#10a37f;
+
+}
+
+#closeMenu{
+
+margin-top:auto;
+
+padding:14px;
+
+background:#ef4444;
 
 color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+@keyframes slideMenu{
+
+from{
+
+transform:translateX(-100%);
+
+}
+
+to{
+
+transform:translateX(0);
+
+}
 
 }
