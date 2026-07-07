@@ -193,6 +193,38 @@ font-size:15px;
 
 }
 
+.menuLink{
+
+display:block;
+
+margin-top:12px;
+
+padding:12px;
+
+background:#21262d;
+
+color:#fff;
+
+text-decoration:none;
+
+border-radius:10px;
+
+border:1px solid var(--border);
+
+transition:.25s;
+
+text-align:center;
+
+}
+
+.menuLink:hover{
+
+background:#30363d;
+
+color:#10a37f;
+
+}
+
 /* ================= Main ================= */
 
 .main{
