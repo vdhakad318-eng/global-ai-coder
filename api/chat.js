@@ -70,7 +70,13 @@ Rules:
     const data = await response.json();
 
 if (!response.ok) {
-  return res.status(response.status).json(data);
+  console.error("Groq Error:", data);
+
+  return res.status(response.status).json({
+    success: false,
+    error: data.error?.message || "Groq API Error",
+    details: data
+  });
 }
 
     return res.status(200).json({
