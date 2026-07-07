@@ -38,8 +38,54 @@ bubble.innerHTML = window.marked ? marked.parse(text) : text;
 
     messages.appendChild(wrapper);
 
-bubble.querySelectorAll("pre code").forEach((block) => {
-    hljs.highlightElement(block);
+bubble.querySelectorAll("pre").forEach((pre) => {
+
+    const code = pre.querySelector("code");
+
+    if (!code) return;
+
+    hljs.highlightElement(code);
+
+    const actions = document.createElement("div");
+    actions.className = "codeActions";
+
+    const copyBtn = document.createElement("button");
+    copyBtn.className = "copyCodeBtn";
+    copyBtn.textContent = "📋 Copy";
+
+    copyBtn.onclick = async () => {
+        await navigator.clipboard.writeText(code.innerText);
+        copyBtn.textContent = "✅ Copied";
+        setTimeout(() => {
+            copyBtn.textContent = "📋 Copy";
+        }, 2000);
+    };
+
+    const previewBtn = document.createElement("button");
+    previewBtn.className = "previewBtn";
+    previewBtn.textContent = "👁 Preview";
+
+    previewBtn.onclick = () => {
+
+        const win = window.open();
+
+        win.document.open();
+        win.document.write(code.innerText);
+        win.document.close();
+
+    };
+
+    actions.appendChild(copyBtn);
+
+    if (
+        code.className.includes("html") ||
+        code.className.includes("xml")
+    ) {
+        actions.appendChild(previewBtn);
+    }
+
+    pre.parentNode.insertBefore(actions, pre);
+
 });
 
     messages.scrollTop = messages.scrollHeight;
