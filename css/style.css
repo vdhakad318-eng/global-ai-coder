@@ -608,36 +608,6 @@ transform:scale(1.05);
 }
 
 /* ===================================
-   Footer Buttons
-=================================== */
-
-.footerButtons{
-
-display:flex;
-gap:10px;
-margin-top:15px;
-flex-wrap:wrap;
-
-}
-
-.footerButtons button{
-
-padding:12px 18px;
-background:#21262d;
-color:#fff;
-border-radius:10px;
-border:1px solid var(--border);
-transition:.25s;
-
-}
-
-.footerButtons button:hover{
-
-background:#30363d;
-
-}
-
-/* ===================================
    Loading Screen
 =================================== */
 
@@ -802,18 +772,6 @@ flex-direction:column;
 }
 
 #sendBtn{
-
-width:100%;
-
-}
-
-.footerButtons{
-
-flex-direction:column;
-
-}
-
-.footerButtons button{
 
 width:100%;
 
