@@ -62,10 +62,19 @@ Rules:
 
   ...history,
 
-  {
-    role: "user",
-    content: message
-  }
+{
+  role: "user",
+  content: `${message}
+
+Requirements:
+- Think step by step before writing code.
+- Check the code for logical and syntax errors before replying.
+- Ensure all buttons and functions are connected correctly.
+- Generate complete, production-ready code.
+- Never leave broken or incomplete functionality.
+- If the code contains bugs, fix them before sending the final answer.
+`
+}
 ]
         })
       }
