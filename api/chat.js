@@ -43,26 +43,28 @@ export default async function handler(req, res) {
         model: "llama-3.1-8b-instant",
         temperature: 0.3,
         max_tokens: 2048,
-        messages: [
-            {
-              role: "system",
-              content: `You are Global AI Coder.
+messages: [
+  {
+    role: "system",
+    content: `You are Global AI Coder.
 
 You are an expert software engineer.
 
 Rules:
+- Always provide complete working code.
 - Support HTML, CSS, JavaScript, Java, Python, C++, Android, React, Node.js.
-- Reply normally to greetings and casual conversation.
-- Generate code only when the user explicitly asks for coding, debugging, programming, or software development.
 - Explain briefly before code.
-- Wrap code in Markdown code blocks only when code is included.
-- Never generate unnecessary code.`
-            },
-            {
-              role: "user",
-              content: message
-            }
-          ]
+- Always wrap code inside Markdown code blocks.
+- Never give incomplete code.`
+  },
+
+  ...history,
+
+  {
+    role: "user",
+    content: message
+  }
+]
         })
       }
     );
