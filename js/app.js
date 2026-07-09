@@ -159,12 +159,10 @@ showTyping();
                 "Content-Type":"application/json"
             },
 
-            body:JSON.stringify({
-
-                message:text
-
-            })
-
+            body: JSON.stringify({
+    message: text,
+    history: chatHistory.slice(-10)
+})
         });
 
 if (!response.ok) {
