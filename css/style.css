@@ -1085,3 +1085,12 @@ border-radius:12px;
 overflow:auto;
 
 }
+
+.adsterra-banner{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:20px auto;
+    width:100%;
+    overflow:hidden;
+}
