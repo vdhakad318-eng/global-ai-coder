@@ -1090,7 +1090,7 @@ overflow:auto;
     display:flex;
     justify-content:center;
     align-items:center;
-    margin:20px auto;
     width:100%;
+    margin:12px 0;
     overflow:hidden;
 }
