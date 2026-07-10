@@ -16,6 +16,13 @@ if (!messages || !prompt || !sendBtn || !typingIndicator) {
 // Chat History
 let chatHistory = [];
 
+// ===============================
+// Adsterra
+// ===============================
+
+let aiReplyCount = 0;
+let adLoaded = false;
+
 // ----------------------------
 // Create Message
 // ----------------------------
@@ -177,6 +184,14 @@ const data = await response.json();
 
             createMessage(data.reply,"ai");
 
+            aiReplyCount++;
+
+if(aiReplyCount % 2===0){
+
+    insertAdBanner();
+
+}
+
             chatHistory.push({
 
     role:"assistant",
@@ -245,6 +260,48 @@ function saveChat(){
         JSON.stringify(chatHistory)
 
     );
+
+}
+
+// =====================================
+// Show Adsterra Banner
+// =====================================
+
+function insertAdBanner(){
+
+    const ad=document.createElement("div");
+
+    ad.className="adsterraBanner";
+
+    ad.innerHTML=`
+        <div id="adsterraContainer"></div>
+    `;
+
+    messages.appendChild(ad);
+
+    if(!adLoaded){
+
+        window.atOptions={
+            key:"8eca2221a0e7e7cabe371e475d2b0696",
+            format:"iframe",
+            height:50,
+            width:320,
+            params:{}
+        };
+
+        const s=document.createElement("script");
+
+        s.src="https://www.highperformanceformat.com/8eca2221a0e7e7cabe371e475d2b0696/invoke.js";
+
+        s.async=true;
+
+        ad.querySelector("#adsterraContainer").appendChild(s);
+
+        adLoaded=true;
+
+    }
+
+    messages.scrollTop=messages.scrollHeight;
 
 }
 
