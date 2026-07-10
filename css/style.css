@@ -1094,3 +1094,19 @@ overflow:auto;
     margin:12px 0;
     overflow:hidden;
 }
+
+.adsterraBanner{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+margin:15px auto;
+
+width:100%;
+
+min-height:55px;
+
+}
