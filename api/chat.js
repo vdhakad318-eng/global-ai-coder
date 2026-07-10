@@ -76,7 +76,7 @@ Rules:
 
 - Wrap all code inside Markdown code blocks.
 
-- Be accurate, concise and helpful.`
+- Be accurate, concise and helpful.
   },
 
   ...history,
